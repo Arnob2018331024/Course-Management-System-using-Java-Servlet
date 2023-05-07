@@ -1,0 +1,47 @@
+h1{
+    font-size: 5rem;
+}
+
+.container{
+    display: flex;
+   
+    
+    height: 100vh;
+
+}
+.div_1{
+   
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 9rem;
+    
+}
+.btn{
+    height: 40px;
+    width: 120px;
+    background-color: blueviolet;
+    color: white;
+    font-weight: 900;
+    font-size: medium;
+    border-radius: 5px;
+    
+}
+.div_2{
+  
+    height: 100%;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.image_1{
+    height: 500px;
+    width: 500px;
+    margin-top: 1rem;
+}
+

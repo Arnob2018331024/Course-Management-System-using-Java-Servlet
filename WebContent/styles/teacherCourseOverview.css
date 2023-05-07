@@ -1,0 +1,21 @@
+.nav{
+    background-color: aliceblue;
+    height: 100%;
+    width: 100%;
+}
+
+.table{
+    margin-top: 3rem;
+    border: .5px solid black;
+}
+
+.heading{
+    text-align: center;
+    margin-top: 4rem;
+    color: #c1121f ;
+}
+.line{
+    width: 100%;
+    height: 1.5px;
+    background-color: #c1121f;
+}
