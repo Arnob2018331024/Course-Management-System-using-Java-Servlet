@@ -1,0 +1,84 @@
+
+SHOW GLOBAL VARIABLES LIKE 'PORT';
+
+mysql -u root -p
+
+
+CREATE DATABASE coursedb;
+use coursedb;
+
+CREATE TABLE users(user_name VARCHAR(255) PRIMARY KEY, 
+password VARCHAR(255),
+user_type VARCHAR(255));
+
+
+
+ALTER TABLE users ADD reg VARCHAR(20);
+UPDATE users SET reg="2018331024" WHERE user_name="studentacc";
+INSERT INTO users(user_name,password,user_type) VALUES("ab","password","student");
+INSERT INTO users VALUES("Arnob","password","student",2018331060);
+
+
+CREATE TABLE courses(course_name VARCHAR(255) PRIMARY KEY,
+teacher VARCHAR(255) DEFAULT NULL,
+FOREIGN KEY (teacher) REFERENCES users(user_name) ON UPDATE CASCADE ON DELETE SET NULL);
+
+CREATE TABLE registrations(course_name VARCHAR(255), 
+student VARCHAR(255),
+PRIMARY KEY(course_name,student),
+FOREIGN KEY (course_name) REFERENCES courses(course_name)
+ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY (student) REFERENCES users(user_name)
+ON DELETE CASCADE ON UPDATE CASCADE
+);
+ALTER TABLE registrations
+ADD status VARCHAR(12) DEFAULT "Enrolled";
+
+INSERT INTO users(user_name,password,user_type) VALUES("EHS","password","teacher");
+INSERT INTO users(user_name,password,user_type) VALUES("studentacc","password","student");
+INSERT INTO users(user_name,password,user_type) VALUES("admin","password","admin");
+
+INSERT INTO courses VALUES("C++","EHS");
+INSERT INTO courses VALUES("Data Science","EHS");
+
+
+INSERT INTO registrations(course_name,student) VALUES("CSE134","ab");
+-- INSERT INTO registrations VALUES("CSE134","studentacc");
+DELETE FROM registrations WHERE student="studentacc" and course_name="CSE134";
+
+
+DELETE FROM courses WHERE course_name="CSE133";
+DELETE FROM users WHERE user_name="admin";
+
+SELECT * FROM courses;
+SELECT * FROM registrations;
+SELECT * FROM users;
+DESCRIBE courses;
+SELECT * FROM registrations WHERE student="studentacc";
+SELECT * FROM registrations WHERE course_name="CSE134";
+
+SELECT * FROM courses
+WHERE course_name NOT IN 
+(SELECT course_name FROM registrations WHERE student="studentacc");
+
+
+SELECT * FROM courses WHERE course_name IN 
+(SELECT course_name FROM registrations WHERE student = "studentacc" );
+SELECT * FROM courses INNER JOIN registrations ON courses.course_name=registrations.course_name WHERE student="studentacc";
+
+SELECT * FROM courses WHERE course_name NOT IN 
+(SELECT course_name FROM registrations WHERE student = "studentacc" );
+
+SELECT * FROM courses WHERE teacher = "teacheracc";
+
+SELECT student FROM registrations WHERE course_name="CSE134";
+
+UPDATE users SET password="komuna", user_type="admin" WHERE user_name="studentacc";
+
+SELECT * FROM users JOIN registrations ON users.user_name = registrations.student
+WHERE course_name="CSE134";
+
+https://www.youtube.com/watch?v=-3m2_wHWXf4
+
+
+
