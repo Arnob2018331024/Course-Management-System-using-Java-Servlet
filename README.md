@@ -7,3 +7,4 @@ This was given as an individual assignment for my webtech course. In this assign
 - HTML
 - CSS
 - Cookies
+- MySQL
